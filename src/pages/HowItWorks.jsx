@@ -29,20 +29,27 @@ function HowItWorks() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in">
-      <h1 className="text-3xl font-bold text-banana mb-3 text-center">
+      <h1 className="text-3xl font-bold text-[var(--text-heading)] mb-3 text-center">
         🍌 How BananaStocks Works
       </h1>
-      <p className="text-banana-light text-center mb-10">
+      <p className="text-[var(--text-body)] text-center mb-10">
         Real financial data, explained through a jungle full of monkeys and bananas.
       </p>
 
       <div className="space-y-6">
         {steps.map((step, i) => (
-          <div key={i} className="bg-jungle-dark rounded-2xl p-5 flex gap-4">
+          <div
+            key={i}
+            className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5 flex gap-4"
+          >
             <span className="text-3xl">{step.emoji}</span>
             <div>
-              <h2 className="text-banana font-semibold mb-1">{step.title}</h2>
-              <p className="text-banana-light text-sm leading-relaxed">{step.body}</p>
+              <h2 className="text-[var(--text-heading)] font-semibold mb-1">
+                {step.title}
+              </h2>
+              <p className="text-[var(--text-body)] text-sm leading-relaxed">
+                {step.body}
+              </p>
             </div>
           </div>
         ))}

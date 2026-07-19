@@ -1,11 +1,11 @@
 function About() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in">
-      <h1 className="text-3xl font-bold text-banana mb-6 text-center">
+      <h1 className="text-3xl font-bold text-[var(--text-heading)] mb-6 text-center">
         🍌 About BananaStocks
       </h1>
 
-      <div className="bg-jungle-dark rounded-2xl p-6 space-y-4 text-banana-light leading-relaxed">
+      <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-6 space-y-4 text-[var(--text-body)] leading-relaxed">
         <p>
           BananaStocks is a beginner-friendly stock education tool. Investing
           terms like P/E ratio, debt-to-equity, and net margin can be

@@ -21,16 +21,16 @@ function Dashboard({ data }) {
   return (
     <div className="max-w-2xl mx-auto px-4 pb-16 pt-8 animate-fade-in">
       {/* Header */}
-      <div className="bg-jungle-dark rounded-2xl p-6 mb-4">
+      <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-6 mb-4">
         <div className="flex justify-between items-start flex-wrap gap-2">
           <div>
-            <h2 className="text-2xl font-bold text-banana">
+            <h2 className="text-2xl font-bold text-[var(--text-heading)]">
               {companyName} ({symbol})
             </h2>
-            <p className="text-banana-light text-sm">{industry}</p>
+            <p className="text-[var(--text-body)] text-sm">{industry}</p>
           </div>
           <div className="text-right">
-            <p className="text-banana text-2xl font-bold">${price}</p>
+            <p className="text-[var(--text-heading)] text-2xl font-bold">${price}</p>
           </div>
         </div>
       </div>
@@ -46,18 +46,18 @@ function Dashboard({ data }) {
       </div>
 
       {/* AI Narrative */}
-      <div className="bg-jungle-dark rounded-2xl p-6 mb-4">
-        <p className="text-banana-light leading-relaxed">{banana.narrative}</p>
-        <p className="text-banana font-semibold mt-4">
+      <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-6 mb-4">
+        <p className="text-[var(--text-body)] leading-relaxed">{banana.narrative}</p>
+        <p className="text-[var(--text-heading)] font-semibold mt-4">
           🍌 Monkey Verdict: {banana.monkeyVerdict}
         </p>
       </div>
 
       {/* Strengths & Risks */}
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
-        <div className="bg-jungle-dark rounded-2xl p-5">
-          <p className="text-banana font-semibold mb-2">🍌 Strengths</p>
-          <ul className="text-banana-light text-sm space-y-1">
+        <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
+          <p className="text-[var(--text-heading)] font-semibold mb-2">🍌 Strengths</p>
+          <ul className="text-[var(--text-body)] text-sm space-y-1">
             {analysis.strengths.length > 0 ? (
               analysis.strengths.map((s, i) => <li key={i}>• {s}</li>)
             ) : (
@@ -65,9 +65,9 @@ function Dashboard({ data }) {
             )}
           </ul>
         </div>
-        <div className="bg-jungle-dark rounded-2xl p-5">
-          <p className="text-banana font-semibold mb-2">🍌 Risks</p>
-          <ul className="text-banana-light text-sm space-y-1">
+        <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
+          <p className="text-[var(--text-heading)] font-semibold mb-2">🍌 Risks</p>
+          <ul className="text-[var(--text-body)] text-sm space-y-1">
             {analysis.risks.length > 0 ? (
               analysis.risks.map((r, i) => <li key={i}>• {r}</li>)
             ) : (
@@ -78,9 +78,11 @@ function Dashboard({ data }) {
       </div>
 
       {/* Raw Financial Metrics */}
-      <div className="bg-jungle-dark rounded-2xl p-5">
-        <p className="text-banana font-semibold mb-3">📊 Raw Financial Metrics</p>
-        <div className="grid grid-cols-2 gap-y-2 text-sm text-banana-light">
+      <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
+        <p className="text-[var(--text-heading)] font-semibold mb-3">
+          📊 Raw Financial Metrics
+        </p>
+        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text-body)]">
           <span>Revenue</span>
           <span className="text-right">{formatMoney(data.revenue)}</span>
 

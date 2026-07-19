@@ -10,7 +10,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-jungle flex flex-col">
+      <div className="min-h-screen bg-[var(--bg-page)] flex flex-col transition-colors duration-300">
         <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
         <Routes>
           <Route path="/" element={<Home />} />

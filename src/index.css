@@ -9,6 +9,22 @@
   --color-jungle-dark: #1B3A17;
 }
 
+/* Daylight Jungle (light mode) */
+:root {
+  --bg-page: #FDF6E3;
+  --bg-card: #FFFFFF;
+  --text-heading: #1B3A17;
+  --text-body: #2D5A27;
+}
+
+/* Spy Monkey Night (dark mode) */
+.dark {
+  --bg-page: #0B0F14;
+  --bg-card: #151B23;
+  --text-heading: #FFD93D;
+  --text-body: #9CA3AF;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', system-ui, sans-serif;
