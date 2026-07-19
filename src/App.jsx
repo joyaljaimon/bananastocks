@@ -1,54 +1,24 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import SearchBar from './components/SearchBar'
-import Dashboard from './components/Dashboard'
-import LoadingSpinner from './components/LoadingSpinner'
-import { fetchStockAnalysis } from './services/stockAPI'
+import Home from './pages/Home'
+import HowItWorks from './pages/HowItWorks'
+import About from './pages/About'
 import { useTheme } from './hooks/useTheme'
 
 function App() {
-  const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
   const { isDark, toggleTheme } = useTheme()
 
-  async function handleSearch(ticker) {
-    setIsLoading(true)
-    setError(null)
-    setData(null)
-
-    try {
-      const result = await fetchStockAnalysis(ticker)
-      setData(result)
-    } catch (err) {
-      // Distinguish "server unreachable" from "ticker not found / bad request"
-      if (err.message.includes('fetch')) {
-        setError("Couldn't reach the banana server. Is the backend running?")
-      } else {
-        setError(err.message)
-      }
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-jungle flex flex-col">
-      <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
-      <Hero />
-      <SearchBar onSearch={handleSearch} isLoading={isLoading} />
-
-      {isLoading && <LoadingSpinner />}
-
-      {error && !isLoading && (
-        <p className="text-center text-red-300 mt-6 px-4 animate-fade-in">
-          🍌 {error}
-        </p>
-      )}
-
-      {data && !isLoading && <Dashboard data={data} />}
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-jungle flex flex-col">
+        <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
