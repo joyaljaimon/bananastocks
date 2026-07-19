@@ -76,6 +76,18 @@ function Dashboard({ data }) {
           </ul>
         </div>
       </div>
+    {analysis.dataGaps && analysis.dataGaps.length > 0 && (
+    <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5 mb-4">
+        <p className="text-[var(--text-heading)] font-semibold mb-2">
+        🌫️ Data Not Available
+        </p>
+        <ul className="text-[var(--text-body)] text-sm space-y-1">
+        {analysis.dataGaps.map((d, i) => (
+            <li key={i}>• {d}</li>
+        ))}
+        </ul>
+    </div>
+    )}
 
       {/* Raw Financial Metrics */}
       <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
