@@ -1,3 +1,4 @@
+import InfoTooltip from './InfoTooltip'
 function formatMoney(value) {
   if (value === null || value === undefined) return 'N/A'
   if (Math.abs(value) >= 1e9) return `$${(value / 1e9).toFixed(1)}B`
@@ -13,6 +14,19 @@ function formatPercent(value) {
 function formatNumber(value, decimals = 2) {
   if (value === null || value === undefined) return 'N/A'
   return value.toFixed(decimals)
+}
+
+const METRIC_DEFINITIONS = {
+  revenue: 'Total money the company brought in from sales before any costs are subtracted.',
+  grossProfit: 'Revenue minus the direct cost of making the product or service.',
+  netIncome: 'The company\'s actual profit after ALL expenses, taxes, and costs are subtracted.',
+  revenueGrowth: 'How much revenue grew compared to the same period last year.',
+  grossMargin: 'The percentage of revenue kept after direct production costs. Higher usually means a more efficient business.',
+  netMargin: 'The percentage of revenue that turns into actual profit. Higher means the company keeps more of what it earns.',
+  debtToEquity: 'How much the company has borrowed compared to what it actually owns. Lower usually means less financial risk.',
+  currentRatio: 'Whether the company has enough short-term assets to cover short-term bills. Above 1 is generally healthy.',
+  peRatio: 'Price-to-Earnings ratio — how expensive the stock is compared to its profits. Higher can mean investors expect strong future growth.',
+  priceToBook: 'Compares the stock price to the company\'s net worth on paper. Higher can mean investors are paying a premium.',
 }
 
 function Dashboard({ data }) {
@@ -89,43 +103,73 @@ function Dashboard({ data }) {
     </div>
     )}
 
-      {/* Raw Financial Metrics */}
-      <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
-        <p className="text-[var(--text-heading)] font-semibold mb-3">
-          📊 Raw Financial Metrics
-        </p>
-        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text-body)]">
-          <span>Revenue</span>
-          <span className="text-right">{formatMoney(data.revenue)}</span>
+    {/* Raw Financial Metrics */}
+    <div className="bg-[var(--bg-card)] transition-colors duration-300 rounded-2xl p-5">
+    <p className="text-[var(--text-heading)] font-semibold mb-3">
+        📊 Raw Financial Metrics
+    </p>
+    <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text-body)]">
+        <span className="flex items-center">
+        Revenue
+        <InfoTooltip text={METRIC_DEFINITIONS.revenue} />
+        </span>
+        <span className="text-right">{formatMoney(data.revenue)}</span>
 
-          <span>Gross Profit</span>
-          <span className="text-right">{formatMoney(data.grossProfit)}</span>
+        <span className="flex items-center">
+        Gross Profit
+        <InfoTooltip text={METRIC_DEFINITIONS.grossProfit} />
+        </span>
+        <span className="text-right">{formatMoney(data.grossProfit)}</span>
 
-          <span>Net Income</span>
-          <span className="text-right">{formatMoney(data.netIncome)}</span>
+        <span className="flex items-center">
+        Net Income
+        <InfoTooltip text={METRIC_DEFINITIONS.netIncome} />
+        </span>
+        <span className="text-right">{formatMoney(data.netIncome)}</span>
 
-          <span>Revenue Growth</span>
-          <span className="text-right">{formatPercent(data.revenueGrowthPct)}</span>
+        <span className="flex items-center">
+        Revenue Growth
+        <InfoTooltip text={METRIC_DEFINITIONS.revenueGrowth} />
+        </span>
+        <span className="text-right">{formatPercent(data.revenueGrowthPct)}</span>
 
-          <span>Gross Margin</span>
-          <span className="text-right">{formatPercent(data.grossMarginPct)}</span>
+        <span className="flex items-center">
+        Gross Margin
+        <InfoTooltip text={METRIC_DEFINITIONS.grossMargin} />
+        </span>
+        <span className="text-right">{formatPercent(data.grossMarginPct)}</span>
 
-          <span>Net Margin</span>
-          <span className="text-right">{formatPercent(data.netMarginPct)}</span>
+        <span className="flex items-center">
+        Net Margin
+        <InfoTooltip text={METRIC_DEFINITIONS.netMargin} />
+        </span>
+        <span className="text-right">{formatPercent(data.netMarginPct)}</span>
 
-          <span>Debt / Equity</span>
-          <span className="text-right">{formatNumber(data.debtToEquity)}</span>
+        <span className="flex items-center">
+        Debt / Equity
+        <InfoTooltip text={METRIC_DEFINITIONS.debtToEquity} />
+        </span>
+        <span className="text-right">{formatNumber(data.debtToEquity)}</span>
 
-          <span>Current Ratio</span>
-          <span className="text-right">{formatNumber(data.currentRatio)}</span>
+        <span className="flex items-center">
+        Current Ratio
+        <InfoTooltip text={METRIC_DEFINITIONS.currentRatio} />
+        </span>
+        <span className="text-right">{formatNumber(data.currentRatio)}</span>
 
-          <span>P/E Ratio</span>
-          <span className="text-right">{formatNumber(data.peRatio)}</span>
+        <span className="flex items-center">
+        P/E Ratio
+        <InfoTooltip text={METRIC_DEFINITIONS.peRatio} />
+        </span>
+        <span className="text-right">{formatNumber(data.peRatio)}</span>
 
-          <span>Price / Book</span>
-          <span className="text-right">{formatNumber(data.priceToBook)}</span>
-        </div>
-      </div>
+        <span className="flex items-center">
+        Price / Book
+        <InfoTooltip text={METRIC_DEFINITIONS.priceToBook} />
+        </span>
+        <span className="text-right">{formatNumber(data.priceToBook)}</span>
+    </div>
+    </div>
     </div>
   )
 }
