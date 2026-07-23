@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Hero from '../components/Hero'
 import SearchBar from '../components/SearchBar'
 import Dashboard from '../components/Dashboard'
@@ -9,6 +9,16 @@ function Home() {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+
+// Wake up the backend as soon as the page loads, so it's ready
+// by the time the user starts searching (Render free tier sleeps
+// after inactivity and takes 30-60s to wake up on first request)
+  useEffect(() => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5050'
+    fetch(`${API_BASE_URL}/api/health`).catch(() => {
+      // Silently ignore - this is just a warm-up ping, not critical
+    })
+  }, [])
 
   async function handleSearch(ticker) {
     setIsLoading(true)
